@@ -1,19 +1,31 @@
-import re
+# Ler uma lista de pdfs
+# Salvar os pdfs em arquivos txt para leitura
+# # depois de criar o arquivo txt deletar o pdf.
 
-from pdfminer.high_level import extract_pages, extract_text
+# # PROCURAR -> [SEGURADORA, SEGURADO, PROPOSTA, APÓLICE, ENDOSSO,
+# ITEM, PLACA, PREMIO LÍQUIDO, PREMIO TOTAL, RAMO, VENCIMENTO DAS PARCELAS
+# , QUANTIDADE DE PARCELAS]
+from pdfminer.high_level import extract_text
+import os
 
-# nota: objetivo adicionar lista de pdfs
-pdf_path = "boomer_sample.pdf"
-# parse pdf to text
-text = extract_text(pdf_path)
+# Procura os pdfs e cria uma lista
+files = []
+for i in os.listdir(r"/home/petala/Documents/projetos/boomer_pdf_scraping/input_pdfs"):
+    path_folder = "input_pdfs/"
+    path = f"{path_folder}{i}"
+    files.append(path)
+    print(files)
 
-# write text to txt file
-
-
-def write_text_file(text):
+# Extrai o texto dos pdfs em um txt
+for file in files:
+    text = extract_text(file)
+    print(text)
     with open("Output.txt", "w") as text_file:
         text_file.write(text)
 
 
-# # PROCURAR -> [SEGURADORA, SEGURADO, PROPOSTA, APÓLICE, ENDOSSO, ITEM, PLACA, PREMIO LÍQUIDO, PREMIO TOTAL, RAMO, VENCIMENTO DAS PARCELAS, QUANTIDADE DE PARCELAS]
-print(matches)
+path = "Output.txt"
+file = open(path)
+
+print(file.readline())
+file.close()
